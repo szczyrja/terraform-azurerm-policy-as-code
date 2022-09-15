@@ -48,15 +48,6 @@ output "definition" {
           }
           type = "String"
         }
-        workspaceId = {
-          defaultValue = ""
-          metadata = {
-            assignPermissions = true
-            description       = "Auto provision the Log Analytics agent on your subscriptions to monitor and collect security data using a custom workspace."
-            displayName       = "Log Analytics workspace"
-          }
-          type = "String"
-        }
       }
     )
     policy_rule = data.azurerm_policy_definition.def_builtin.policy_rule
