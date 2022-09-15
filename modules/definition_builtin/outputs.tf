@@ -34,7 +34,7 @@ output "definition" {
     name        = var.policy_name
     description = data.azurerm_policy_definition.def_builtin.description
     metadata    = data.azurerm_policy_definition.def_builtin.metadata
-    parameters  = data.azurerm_policy_definition.def_builtin.parameters != "" ? data.azurerm_policy_definition.def_builtin.parameters : file("modules/definition_builtin/default_parameters")
+    parameters  = data.azurerm_policy_definition.def_builtin.parameters != "" ? data.azurerm_policy_definition.def_builtin.parameters : file(".terraform/modules/configure_builtin/modules/definition_builtin/default_parameters")
     policy_rule = data.azurerm_policy_definition.def_builtin.policy_rule
   }
 }
