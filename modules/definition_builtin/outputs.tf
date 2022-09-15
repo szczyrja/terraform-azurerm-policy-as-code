@@ -34,7 +34,31 @@ output "definition" {
     name        = var.policy_name
     description = data.azurerm_policy_definition.def_builtin.description
     metadata    = data.azurerm_policy_definition.def_builtin.metadata
-    parameters  = data.azurerm_policy_definition.def_builtin.parameters != "" ? data.azurerm_policy_definition.def_builtin.parameters : "jsonencode(\"{\\\"effect\\\":{\\\"type\\\":\\\"String\\\",\\\"allowedValues\\\":[\\\"AuditIfNotExists\\\",\\\"Disabled\\\"],\\\"defaultValue\\\":\\\"AuditIfNotExists\\\",\\\"metadata\\\":{\\\"description\\\":\\\"Enable or disable the execution of the policy\\\",\\\"displayName\\\":\\\"Effect\\\"}}}\")"
+    parameters = data.azurerm_policy_definition.def_builtin.parameters != "" ? data.azurerm_policy_definition.def_builtin.parameters : jsonencode(
+      {
+        effect = {
+          allowedValues = [
+            "DeployIfNotExists",
+            "Disabled",
+          ]
+          defaultValue = "DeployIfNotExists"
+          metadata = {
+            description = "Enable or disable the execution of the policy"
+            displayName = "Effect"
+          }
+          type = "String"
+        }
+        workspaceId = {
+          defaultValue = ""
+          metadata = {
+            assignPermissions = true
+            description       = "Auto provision the Log Analytics agent on your subscriptions to monitor and collect security data using a custom workspace."
+            displayName       = "Log Analytics workspace"
+          }
+          type = "String"
+        }
+      }
+    )
     policy_rule = data.azurerm_policy_definition.def_builtin.policy_rule
   }
 }
