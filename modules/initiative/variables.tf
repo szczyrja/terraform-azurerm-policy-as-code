@@ -74,7 +74,7 @@ locals {
   # colate all definition parameters into a single object
   member_parameters = {
     for d in var.member_definitions :
-    d.name => try(jsondecode(d.parameters), {})
+    d.name => try(jsondecode(d.parameters), null)
   }
 
   # combine all discovered definition parameters using interpolation
