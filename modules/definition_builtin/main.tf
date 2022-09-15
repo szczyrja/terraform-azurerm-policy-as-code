@@ -21,5 +21,5 @@
 # }
 
 data "azurerm_policy_definition" "def_builtin" {
-  name = var.policy_name
+  display_name = var.policy_name
 }
