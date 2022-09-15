@@ -34,7 +34,7 @@ output "definition" {
     name        = var.policy_name
     description = data.azurerm_policy_definition.def_builtin.description
     metadata    = data.azurerm_policy_definition.def_builtin.metadata
-    parameters  = data.azurerm_policy_definition.def_builtin.parameters
+    parameters  = data.azurerm_policy_definition.def_builtin.parameters == "{}" ? "\"{\\\"effect\\\":{\\\"type\\\":\\\"String\\\",\\\"allowedValues\\\":[\\\"AuditIfNotExists\\\",\\\"Disabled\\\"],\\\"defaultValue\\\":\\\"AuditIfNotExists\\\",\\\"metadata\\\":{\\\"description\\\":\\\"Enable or disable the execution of the policy\\\",\\\"displayName\\\":\\\"Effect\\\"}}}\"" : data.azurerm_policy_definition.def_builtin.parameters
     policy_rule = data.azurerm_policy_definition.def_builtin.policy_rule
   }
 }
