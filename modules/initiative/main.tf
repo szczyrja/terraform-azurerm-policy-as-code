@@ -7,7 +7,7 @@ resource "azurerm_policy_set_definition" "set" {
   management_group_id = var.management_group_id
 
   metadata   = jsonencode(local.metadata)
-  parameters = jsonencode(local.parameters)
+  parameters = try(jsonencode(local.parameters), {})
 
   dynamic "policy_definition_reference" {
     for_each = [for d in var.member_definitions : {
