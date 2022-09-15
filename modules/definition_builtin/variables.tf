@@ -109,20 +109,20 @@ locals {
 
   # # manually generate the definition Id to prevent "Invalid for_each argument" on set_assignment plan/apply
   # definition_id = var.management_group_id != null ? "${var.management_group_id}/providers/Microsoft.Authorization/policyDefinitions/${local.policy_name}" : azurerm_policy_definition.def.id
-  default_parameter = jsonencode(
-    {
-      effect = {
-        allowedValues = [
-          "DeployIfNotExists",
-          "Disabled",
-        ]
-        defaultValue = "DeployIfNotExists"
-        metadata = {
-          description = "Enable or disable the execution of the policy"
-          displayName = "Effect"
-        }
-        type = "String"
-      }
-    }
-  )
+  #   default_parameter = jsonencode(
+  #     {
+  #       effect = {
+  #         allowedValues = [
+  #           "DeployIfNotExists",
+  #           "Disabled",
+  #         ]
+  #         defaultValue = "DeployIfNotExists"
+  #         metadata = {
+  #           description = "Enable or disable the execution of the policy"
+  #           displayName = "Effect"
+  #         }
+  #         type = "String"
+  #       }
+  #     }
+  #   )
 }
