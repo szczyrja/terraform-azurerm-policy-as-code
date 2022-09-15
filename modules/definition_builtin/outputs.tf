@@ -24,7 +24,7 @@ output "metadata" {
 }
 
 output "definition" {
-  description = "The combined Policy Definition resource node"
+  description = "Policy definition from data source"
   value = {
     // not needed?
     # display_name        = var.policy_name    
@@ -33,8 +33,8 @@ output "definition" {
     id          = data.azurerm_policy_definition.def_builtin.id
     name        = var.policy_name
     description = data.azurerm_policy_definition.def_builtin.description
-    metadata    = jsonencode(data.azurerm_policy_definition.def_builtin.metadata)
-    parameters  = jsonencode(data.azurerm_policy_definition.def_builtin.parameters)
-    policy_rule = jsonencode(data.azurerm_policy_definition.def_builtin.policy_rule)
+    metadata    = data.azurerm_policy_definition.def_builtin.metadata
+    parameters  = data.azurerm_policy_definition.def_builtin.parameters
+    policy_rule = data.azurerm_policy_definition.def_builtin.policy_rule
   }
 }
